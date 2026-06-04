@@ -1,0 +1,103 @@
+{
+  "privileges": [
+    {
+      "name": "WebAccess",
+      "essential": true,
+      "parameters": [
+        "https://*.tile.openstreetmap.org",
+        "https://tile.openstreetmap.org"
+      ]
+    }
+  ],
+  "dataRoles": [
+    {
+      "displayName": "ID / Category",
+      "description": "Unique key per row (e.g. FIPS for a county, PCP ID for an office). Drives selection/cross-filtering.",
+      "name": "id",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Shape (WKT)",
+      "description": "Well-Known Text polygon/multipolygon. Rows with a shape render as filled regions.",
+      "name": "wkt",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Latitude",
+      "description": "Point latitude. Rows with lat + lon (and no shape) render as pins.",
+      "name": "latitude",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Longitude",
+      "description": "Point longitude.",
+      "name": "longitude",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Color value",
+      "description": "Measure that drives the region fill gradient (e.g. member count).",
+      "name": "colorValue",
+      "kind": "Measure"
+    },
+    {
+      "displayName": "Size value",
+      "description": "Optional measure that scales pin radius (e.g. members per office).",
+      "name": "sizeValue",
+      "kind": "Measure"
+    },
+    {
+      "displayName": "Tooltips",
+      "description": "Extra fields to show on hover.",
+      "name": "tooltips",
+      "kind": "Grouping"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "categorical": {
+        "categories": {
+          "select": [
+            { "for": { "in": "id" } },
+            { "for": { "in": "wkt" } },
+            { "for": { "in": "latitude" } },
+            { "for": { "in": "longitude" } },
+            { "for": { "in": "tooltips" } }
+          ],
+          "dataReductionAlgorithm": { "top": { "count": 30000 } }
+        },
+        "values": {
+          "select": [
+            { "bind": { "to": "colorValue" } },
+            { "bind": { "to": "sizeValue" } }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {
+    "choropleth": {
+      "properties": {
+        "lowColor": { "type": { "fill": { "solid": { "color": true } } } },
+        "highColor": { "type": { "fill": { "solid": { "color": true } } } },
+        "fillOpacity": { "type": { "numeric": true } },
+        "strokeColor": { "type": { "fill": { "solid": { "color": true } } } },
+        "strokeWidth": { "type": { "numeric": true } }
+      }
+    },
+    "pins": {
+      "properties": {
+        "color": { "type": { "fill": { "solid": { "color": true } } } },
+        "radius": { "type": { "numeric": true } },
+        "strokeColor": { "type": { "fill": { "solid": { "color": true } } } },
+        "strokeWidth": { "type": { "numeric": true } },
+        "opacity": { "type": { "numeric": true } }
+      }
+    },
+    "basemap": {
+      "properties": {
+        "style": { "type": { "enumeration": [] } }
+      }
+    }
+  }
+}

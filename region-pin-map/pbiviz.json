@@ -1,0 +1,25 @@
+{
+  "visual": {
+    "name": "regionPinMap",
+    "displayName": "Region & Pin Map",
+    "guid": "regionPinMap6F3A2B1C9D4E4F8A9B0C1D2E3F4A5B6C",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "Choropleth regions colored by a measure with an overlaid, interactive pin layer. Renders polygons (WKT) and points (lat/lon) in one MapLibre map.",
+    "supportUrl": "https://github.com/dasatizabal/region-pin-map",
+    "gitHubUrl": "https://github.com/dasatizabal/region-pin-map"
+  },
+  "apiVersion": "5.11.0",
+  "author": {
+    "name": "David",
+    "email": "dasatizabal@gmail.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": []
+}
